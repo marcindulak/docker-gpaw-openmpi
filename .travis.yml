@@ -11,4 +11,4 @@ script:
   - docker build --tag "$IMAGE_NAME" .
 
 after_script:
-  - docker-compose -f docker-compose.myjob.yml up
+  - docker-compose -f docker-compose.travis.yml up
