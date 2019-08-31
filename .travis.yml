@@ -12,6 +12,3 @@ script:
 
 after_script:
   - docker-compose -f docker-compose.myjob.yml up
-  - cat myjob/h2.txt
-  - docker-compose -f docker-compose.myjob.yml down
-  - docker images  
