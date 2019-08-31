@@ -1,8 +1,8 @@
+[![Build Status](https://travis-ci.org/marcindulak/docker-gpaw-openmpi.svg?branch=master)](https://travis-ci.org/marcindulak/docker-gpaw-openmpi)
+
 # Description
 
 Dockerfile for GPAW https://wiki.fysik.dtu.dk/gpaw/ built against openmpi, based on Fedora.
-
-[![Build Status](https://travis-ci.org/marcindulak/docker-gpaw-openmpi.svg?branch=master)](https://travis-ci.org/marcindulak/docker-gpaw-openmpi)
 
 The docker images are available at [dockerhub](https://hub.docker.com/r/marcindulak/gpaw-openmpi)
 
