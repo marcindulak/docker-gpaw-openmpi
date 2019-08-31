@@ -1,7 +1,7 @@
 version: '3'
 services:
   gpaw:
-    image: 'gpaw-openmpi:latest'
+    image: 'marcindulak/gpaw-openmpi:latest'
     volumes:
       - './myjob:/mnt:rw'
     command:
