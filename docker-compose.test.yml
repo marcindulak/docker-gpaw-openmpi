@@ -1,0 +1,12 @@
+version: '3'
+services:
+  sut:
+    build: .
+    command:
+      - /bin/bash
+      - -c
+      - |
+        . /etc/profile.d/modules.sh
+        module use /usr/share/modulefiles
+        module load mpi/openmpi-x86_64
+        mpiexec --allow-run-as-root -np 2 gpaw-python3_openmpi -c "import gpaw.mpi; print(gpaw.mpi.rank)"

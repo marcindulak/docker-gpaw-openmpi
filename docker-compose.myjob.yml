@@ -1,0 +1,15 @@
+version: '3'
+services:
+  gpaw:
+    image: 'gpaw-openmpi:latest'
+    volumes:
+      - './myjob:/mnt:rw'
+    command:
+      - /bin/bash
+      - -c
+      - |
+        . /etc/profile.d/modules.sh
+        module use /usr/share/modulefiles
+        module load mpi/openmpi-x86_64
+        cd /mnt
+        mpiexec --allow-run-as-root -np 2 gpaw-python3_openmpi h2.py
