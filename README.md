@@ -4,6 +4,8 @@ Dockerfile for GPAW https://wiki.fysik.dtu.dk/gpaw/ built against openmpi, based
 
 [![Build Status](https://travis-ci.org/marcindulak/docker-gpaw-openmpi.svg?branch=master)](https://travis-ci.org/marcindulak/docker-gpaw-openmpi)
 
+The docker images are available at [dockerhub](https://hub.docker.com/r/marcindulak/gpaw-openmpi)
+
 
 # Usage
 
@@ -69,6 +71,14 @@ List images
 ```sh
 docker images
 ```
+
+
+# Docker image tagging convention
+
+The docker image is tagged with the GPAW upstream version appended by a build number,
+for example the first docker image of GPAW version `1.4.0` is tagged with `1.4.0-1`.
+Note that this docker image may correspond to e.g. Fedora's RPM `1.4.0-10.fc30.x86_64`.
+See the `ENV` values in [Dockerfile](Dockerfile).
 
 
 # Dependencies
