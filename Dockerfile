@@ -1,10 +1,10 @@
-FROM fedora:30
+FROM fedora:32
 
 LABEL name="GPAW Openmpi" \
       url="https://wiki.fysik.dtu.dk/gpaw/"
 
-ENV GPAW_VERSION 1.4.0
-ENV FEDORA_RELEASE 10.fc30
+ENV GPAW_VERSION 19.8.1
+ENV FEDORA_RELEASE 2.fc32
 ENV FEDORA_ARCH x86_64
 
 RUN set -x \
