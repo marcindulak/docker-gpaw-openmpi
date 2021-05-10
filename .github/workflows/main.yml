@@ -1,0 +1,21 @@
+name: main
+
+env:
+  IMAGE_NAME: gpaw-openmpi
+
+on:
+  - push
+
+jobs:
+  main:
+    name: main
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: docker build --tag "$IMAGE_NAME" .
+        run: docker build --tag "$IMAGE_NAME" .
+
+      - name: docker-compose -f docker-compose.ci.yml up
+        run: docker-compose -f docker-compose.ci.yml up

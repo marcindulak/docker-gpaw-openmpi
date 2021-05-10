@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/marcindulak/docker-gpaw-openmpi.svg?branch=master)](https://travis-ci.org/marcindulak/docker-gpaw-openmpi)
+![main](https://github.com/marcindulak/docker-gpaw-openmpi/workflows/main/badge.svg)
 
 # Description
 
