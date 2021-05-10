@@ -9,4 +9,4 @@ services:
         . /etc/profile.d/modules.sh
         module use /usr/share/modulefiles
         module load mpi/openmpi-x86_64
-        mpiexec --allow-run-as-root -np 1 gpaw-python3_openmpi -c "import gpaw.mpi; print(gpaw.mpi.rank)"
+        python3 -c "import gpaw.mpi; print(gpaw.mpi.rank)"

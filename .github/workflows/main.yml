@@ -17,5 +17,5 @@ jobs:
       - name: docker build --tag "$IMAGE_NAME" .
         run: docker build --tag "$IMAGE_NAME" .
 
-      - name: docker-compose -f docker-compose.ci.yml up
-        run: docker-compose -f docker-compose.ci.yml up
+      - name: docker-compose -f docker-compose.ci.yml up --exit-code-from gpaw
+        run: docker-compose -f docker-compose.ci.yml up --exit-code-from gpaw

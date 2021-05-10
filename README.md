@@ -15,7 +15,7 @@ First, make sure you are able to run the `docker run hello-world` example https:
 Then test the basic GPAW functionality
 
 ```sh
-docker run --rm -it marcindulak/gpaw-openmpi:latest bash -c '. /etc/profile.d/modules.sh&& module use /usr/share/modulefiles&& module load mpi/openmpi-x86_64&& mpiexec --allow-run-as-root -np 2 gpaw-python3_openmpi -c "import gpaw.mpi; print(gpaw.mpi.rank)"'
+docker run --rm -it marcindulak/gpaw-openmpi:latest bash -c '. /etc/profile.d/modules.sh&& module use /usr/share/modulefiles&& module load mpi/openmpi-x86_64&& mpiexec --allow-run-as-root -np 2 python3 -c "import gpaw.mpi; print(gpaw.mpi.rank)"'
 ```
 
 **Note**: if on MS Windows you are getting 'image operating system "linux" cannot be used on this platform' follow https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers
@@ -36,7 +36,7 @@ You have two choices, listed below.
 ## Run a job with docker-compose
 
 ```sh
-docker-compose -f docker-compose.myjob.yml up
+docker-compose -f docker-compose.myjob.yml up --exit-code-from gpaw
 ```
 
 Remove the terminated container
@@ -48,7 +48,7 @@ docker-compose -f docker-compose.myjob.yml down
 ## Run a job manually
 
 ```sh
-docker run --name myjob --rm -it -v "$(pwd)/myjob:/mnt" marcindulak/gpaw-openmpi:latest bash -c '. /etc/profile.d/modules.sh&& module use /usr/share/modulefiles&& module load mpi/openmpi-x86_64&& cd /mnt&& mpiexec --allow-run-as-root -np 2 which gpaw-python3_openmpi h2.py'
+docker run --name myjob --rm -it -v "$(pwd)/myjob:/mnt" marcindulak/gpaw-openmpi:latest bash -c '. /etc/profile.d/modules.sh&& module use /usr/share/modulefiles&& module load mpi/openmpi-x86_64&& cd /mnt&& mpiexec --allow-run-as-root -np 2 python3 h2.py'
 ```
 
 ## Examine the created output file
