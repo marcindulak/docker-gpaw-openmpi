@@ -10,3 +10,13 @@ services:
         module use /usr/share/modulefiles
         module load mpi/openmpi-x86_64
         python3 -c "import gpaw.mpi; print(gpaw.mpi.rank)"
+        cat <<'EOF' > h2.py
+        from ase import Atoms
+        from gpaw import GPAW, PW
+        h2 = Atoms('H2', [(0, 0, 0), (0, 0, 0.74)])
+        h2.center(vacuum=2.5)
+        h2.set_calculator(GPAW(xc='PBE', mode=PW(300), txt='h2.txt'))
+        h2.get_potential_energy()
+        h2.get_forces()
+        EOF
+        python3 h2.py && grep "Free energy" h2.txt
