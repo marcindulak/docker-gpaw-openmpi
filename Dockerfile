@@ -1,10 +1,10 @@
-FROM fedora:33@sha256:a6840e54fee94092a4298f3b05bfef310e8f7cebae7dbcdadb178f44251d2869
+FROM fedora:34@sha256:6c8b3dea130cfa28babcb4d73450ed64f962e5464ab191bc0539487daf25d533
 
 LABEL name="GPAW Openmpi" \
       url="https://wiki.fysik.dtu.dk/gpaw/"
 
-ENV GPAW_VERSION 20.1.0
-ENV FEDORA_RELEASE 3.fc33
+ENV GPAW_VERSION 21.1.0
+ENV FEDORA_RELEASE 1.fc34
 ENV FEDORA_ARCH x86_64
 
 RUN set -x \
