@@ -75,13 +75,26 @@ docker images
 ```
 
 
-# Docker image tagging convention
+# Releasing
+
+## Docker image tagging convention
 
 The docker image is tagged with the GPAW upstream version appended by a build number,
 for example the first docker image of GPAW version `1.4.0` is tagged with `1.4.0-1`.
 Note that this docker image may correspond to e.g. Fedora's RPM `1.4.0-10.fc30.x86_64`.
 See the `ENV` values in [Dockerfile](Dockerfile).
 
+Build and test the image
+```sh
+docker-compose -f docker-compose.test.yml build --no-cache
+docker-compose -f docker-compose.test.yml up --exit-code-from gpaw
+```
+
+Tag and push the image
+```sh
+docker tag docker-gpaw-openmpi_sut:latest marcindulak/gpaw-openmpi:1.4.0-1
+docker push marcindulak/gpaw-openmpi:1.4.0-1
+```
 
 # Dependencies
 
