@@ -87,7 +87,7 @@ See the `ENV` values in [Dockerfile](Dockerfile).
 Build and test the image
 ```sh
 docker-compose -f docker-compose.test.yml build --no-cache
-docker-compose -f docker-compose.test.yml up --exit-code-from gpaw
+docker-compose -f docker-compose.test.yml up --exit-code-from sut
 ```
 
 Tag and push the image
