@@ -93,7 +93,9 @@ docker-compose -f docker-compose.test.yml up --exit-code-from sut
 Tag and push the image
 ```sh
 docker tag docker-gpaw-openmpi_sut:latest marcindulak/gpaw-openmpi:1.4.0-1
+docker tag docker-gpaw-openmpi_sut:latest marcindulak/gpaw-openmpi:latest
 docker push marcindulak/gpaw-openmpi:1.4.0-1
+docker push marcindulak/gpaw-openmpi:latest
 ```
 
 # Dependencies
