@@ -1,21 +1,33 @@
 name: main
 
-env:
-  IMAGE_NAME: gpaw-openmpi
-
 on:
   - push
 
 jobs:
   main:
     name: main
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
 
-      - name: docker build --tag "$IMAGE_NAME" .
-        run: docker build --tag "$IMAGE_NAME" .
+      - name: create builder node
+        run: |
+          set -eo pipefail
+          docker buildx create --name node --platform linux/amd64,linux/arm64
+          docker buildx use node
 
-      - name: docker-compose -f docker-compose.ci.yml up --exit-code-from gpaw
-        run: docker-compose -f docker-compose.ci.yml up --exit-code-from gpaw
+      - name: build images
+        run: |
+          set -eo pipefail
+          BUILDKIT_PROGRESS=plain docker buildx bake -f docker-compose.test.yml --set '*.platform=linux/amd64,linux/arm64' --no-cache
+
+      - name: load the machine image
+        run: |
+          set -eo pipefail
+          docker buildx build --platform $(docker system info --format '{{.OSType}}/{{.Architecture}}') -t gpaw-openmpi:latest --load .
+
+      - name: test the image
+        run: |
+          set -eo pipefail
+          docker-compose -f docker-compose.ci.yml up --exit-code-from gpaw

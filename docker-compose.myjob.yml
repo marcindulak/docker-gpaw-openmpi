@@ -10,6 +10,6 @@ services:
       - |
         . /etc/profile.d/modules.sh
         module use /usr/share/modulefiles
-        module load mpi/openmpi-x86_64
+        module load mpi/openmpi
         cd /mnt
         mpiexec --allow-run-as-root -np 2 python3 h2.py && grep "Free energy" h2.txt
