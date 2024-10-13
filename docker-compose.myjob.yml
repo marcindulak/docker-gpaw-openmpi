@@ -1,4 +1,3 @@
-version: '3'
 services:
   gpaw:
     image: 'marcindulak/gpaw-openmpi:latest'
@@ -12,6 +11,6 @@ services:
         module use /usr/share/modulefiles
         module load mpi/openmpi
         cd /mnt
-        export PYTHONPATH=$MPI_PYTHON3_SITEARCH
+        export PYTHONPATH=$$MPI_PYTHON3_SITEARCH
         export OMP_NUM_THREADS=1
         mpiexec --allow-run-as-root -np 2 python3 h2.py && grep "Free energy" h2.txt

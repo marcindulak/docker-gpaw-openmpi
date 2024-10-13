@@ -32,4 +32,4 @@ jobs:
       - name: test the image
         run: |
           set -eo pipefail
-          docker-compose -f docker-compose.ci.yml up --exit-code-from gpaw
+          docker compose -f docker-compose.ci.yml up --exit-code-from gpaw

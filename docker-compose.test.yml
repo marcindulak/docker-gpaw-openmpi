@@ -1,4 +1,3 @@
-version: '3'
 services:
   sut:
     build: .
@@ -9,7 +8,7 @@ services:
         . /etc/profile.d/modules.sh
         module use /usr/share/modulefiles
         module load mpi/openmpi
-        export PYTHONPATH=$MPI_PYTHON3_SITEARCH
+        export PYTHONPATH=$$MPI_PYTHON3_SITEARCH
         export OMP_NUM_THREADS=1
         python3 -c "import gpaw.mpi; print(gpaw.mpi.rank)"
         cat <<'EOF' > h2.py
@@ -17,7 +16,7 @@ services:
         from gpaw import GPAW, PW
         h2 = Atoms('H2', [(0, 0, 0), (0, 0, 0.74)])
         h2.center(vacuum=2.5)
-        h2.set_calculator(GPAW(xc='PBE', mode=PW(300), txt='h2.txt'))
+        h2.calc = GPAW(xc='PBE', mode=PW(300), txt='h2.txt')
         h2.get_potential_energy()
         h2.get_forces()
         EOF
