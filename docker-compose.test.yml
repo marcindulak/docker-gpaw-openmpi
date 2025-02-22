@@ -10,6 +10,7 @@ services:
         module load mpi/openmpi
         export PYTHONPATH=$$MPI_PYTHON3_SITEARCH
         export OMP_NUM_THREADS=1
+        gpaw -T test
         python3 -c "import gpaw.mpi; print(gpaw.mpi.rank)"
         cat <<'EOF' > h2.py
         from ase import Atoms

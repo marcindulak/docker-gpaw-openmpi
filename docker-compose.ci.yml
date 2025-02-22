@@ -13,4 +13,5 @@ services:
         cd /mnt
         export PYTHONPATH=$$MPI_PYTHON3_SITEARCH
         export OMP_NUM_THREADS=1
+        mpiexec --allow-run-as-root -np 1 gpaw -T test
         mpiexec --allow-run-as-root -np 1 python3 h2.py && grep "Free energy" h2.txt

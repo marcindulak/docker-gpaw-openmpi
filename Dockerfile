@@ -1,6 +1,6 @@
 # Discover the sha by removing the @sha part and running: timeout 5 docker buildx build --pull --no-cache .
 # Alternatively find the sha in Dockerhub UI https://github.com/docker/roadmap/issues/262
-FROM fedora:40@sha256:d0207dbb078ee261852590b9a8f1ab1f8320547be79a2f39af9f3d23db33735e
+FROM fedora:41@sha256:3ec60eb34fa1a095c0c34dd37cead9fd38afb62612d43892fcf1d3425c32bc1e
 
 # https://docs.docker.com/engine/reference/builder/#automatic-platform-args-in-the-global-scope
 ARG TARGETPLATFORM
@@ -13,8 +13,8 @@ RUN echo uname -m $(uname -m)
 LABEL name="GPAW Openmpi" \
       url="https://wiki.fysik.dtu.dk/gpaw/"
 
-ENV GPAW_VERSION 24.6.0
-ENV FEDORA_RELEASE 1.fc40
+ENV GPAW_VERSION 25.1.0
+ENV FEDORA_RELEASE 1.fc41
 
 RUN set -x \
     && dnf install -y \
