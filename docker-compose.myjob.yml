@@ -7,6 +7,7 @@ services:
       - /bin/bash
       - -c
       - |
+        . /etc/profile.d/gpaw-*.sh
         . /etc/profile.d/modules.sh
         module use /usr/share/modulefiles
         module load mpi/openmpi
