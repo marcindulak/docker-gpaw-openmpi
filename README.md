@@ -12,10 +12,11 @@ The docker images are available at [dockerhub](https://hub.docker.com/r/marcindu
 First, make sure you are able to run the `docker run hello-world` example https://docs.docker.com/get-started/.
 **Note** on MS Windows install https://hub.docker.com/editions/community/docker-ce-desktop-windows.
 
-Then test the basic GPAW functionality
+Then test the basic GPAW parellelism functionality.
+The command below is valid starting from [gpaw-26.7.0](https://gitlab.com/gpaw/gpaw/-/tags/26.7.0), for an earlier use see README.md of the past repo tags
 
 ```sh
-docker run --rm -it marcindulak/gpaw-openmpi:latest bash -c '. /etc/profile.d/gpaw-*.sh&& . /etc/profile.d/modules.sh&& module use /usr/share/modulefiles&& module load mpi/openmpi && PYTHONPATH=$MPI_PYTHON3_SITEARCH OMP_NUM_THREADS=1 mpiexec --allow-run-as-root -np 2 python3 -c "import gpaw.mpi; print(gpaw.mpi.rank)"'
+docker run --rm -it marcindulak/gpaw-openmpi:latest bash -c '. /etc/profile.d/gpaw-*.sh&& . /etc/profile.d/modules.sh&& module use /usr/share/modulefiles&& module load mpi/openmpi && PYTHONPATH=$MPI_PYTHON3_SITEARCH OMP_NUM_THREADS=1 GPAW_MPI_BACKEND=cgpaw mpiexec --allow-run-as-root -np 2 gpaw python -c "import gpaw.mpi; print(gpaw.mpi.world.rank)"'
 ```
 
 **Note**: if on MS Windows you are getting 'image operating system "linux" cannot be used on this platform' follow https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers
@@ -47,8 +48,10 @@ docker compose -f docker-compose.myjob.yml down
 
 ## Run a job manually
 
+The command below is valid starting from [gpaw-26.7.0](https://gitlab.com/gpaw/gpaw/-/tags/26.7.0), for an earlier use see README.md of the past repo tags
+
 ```sh
-docker run --name myjob --rm -it -v "$(pwd)/myjob:/mnt" marcindulak/gpaw-openmpi:latest bash -c '. /etc/profile.d/gpaw-*.sh&&. /etc/profile.d/modules.sh&& module use /usr/share/modulefiles&& module load mpi/openmpi && cd /mnt&& PYTHONPATH=$MPI_PYTHON3_SITEARCH OMP_NUM_THREADS=1 mpiexec --allow-run-as-root -np 2 python3 h2.py'
+docker run --name myjob --rm -it -v "$(pwd)/myjob:/mnt" marcindulak/gpaw-openmpi:latest bash -c '. /etc/profile.d/gpaw-*.sh&&. /etc/profile.d/modules.sh&& module use /usr/share/modulefiles&& module load mpi/openmpi && cd /mnt&& PYTHONPATH=$MPI_PYTHON3_SITEARCH OMP_NUM_THREADS=1 GPAW_MPI_BACKEND=cgpaw mpiexec --allow-run-as-root -np 2 gpaw python h2.py'
 ```
 
 ## Examine the created output file
